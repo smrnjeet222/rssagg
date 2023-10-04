@@ -37,6 +37,11 @@ func main() {
 	if err != nil {
 		log.Fatal("Can't connect to DB:", err)
 	}
+	if err := conn.Ping(); err != nil {
+		log.Fatal("Can't connect to DB:", err)
+	}
+
+	defer conn.Close()
 
 	db := database.New(conn)
 
